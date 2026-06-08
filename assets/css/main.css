@@ -356,7 +356,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-.phone--hero .phone-screen { border-radius: 46px; }
+.phone--hero .phone-screen { border-radius: 38px; }
 
 /* Gallery phones — 240×500 matches same ratio → no cropping */
 .phone--gallery {
@@ -364,7 +364,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   height: 500px;
   border-radius: 44px;
 }
-.phone--gallery .phone-screen { border-radius: 36px; }
+.phone--gallery .phone-screen { border-radius: 26px; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
