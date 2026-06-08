@@ -163,19 +163,23 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
 }
 .dl-btn:active { transform: scale(0.96); filter: brightness(0.96); }
 
-/* Variant for CTA card (blue gradient background) */
-.dl-btn--inv {
-  background: rgba(255, 255, 255, 0.92);
-  color: #007AFF;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+/* Nav size variant */
+.dl-btn--sm {
+  font-size: 14px;
+  padding: 8px 18px;
+  gap: 7px;
+  box-shadow: 0 3px 12px rgba(0, 122, 255, 0.32);
 }
-.dl-btn--inv svg { fill: #007AFF; }
-.dl-btn--inv:hover {
-  background: #fff;
-  color: #007AFF;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
-  filter: none;
+
+/* --- App Store Badge (hero + CTA) --- */
+.appstore-badge {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.18s;
 }
+.appstore-badge:hover { opacity: 0.82; transform: translateY(-2px); text-decoration: none; }
+.appstore-badge:active { transform: scale(0.97); }
+.appstore-badge img { display: block; height: 54px; width: auto; }
 
 /* --- Navigation --- */
 .nav {
@@ -240,13 +244,6 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   transition: color 0.2s, background 0.2s;
 }
 .lang-btn:hover { color: var(--text); }
-
-.nav-dl-btn {
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-}
-.nav-dl-btn:hover { text-decoration: none; }
 
 .hamburger {
   display: none;
@@ -841,7 +838,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   .phone--hero { width: 230px; height: 499px; }
 
   .nav-links { display: none; }
-  .nav-dl-btn { display: none; }
+  .nav-right .dl-btn { display: none; }
   .hamburger { display: flex; }
 
   .feat-grid { grid-template-columns: 1fr; gap: 12px; }
