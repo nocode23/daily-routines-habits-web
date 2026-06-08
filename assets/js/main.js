@@ -27,7 +27,9 @@ if (hamburger) {
 const html = document.documentElement;
 const langBtn = document.getElementById('langBtn');
 
-const savedLang = localStorage.getItem('drh-lang') || 'en';
+const urlLang = new URLSearchParams(location.search).get('lang');
+const savedLang = (urlLang === 'en' || urlLang === 'cs') ? urlLang : (localStorage.getItem('drh-lang') || 'en');
+if (urlLang) localStorage.setItem('drh-lang', urlLang);
 html.lang = savedLang;
 
 if (langBtn) {
