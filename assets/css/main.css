@@ -605,7 +605,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
 .cta-card {
   background: linear-gradient(140deg, #007AFF 0%, #5856D6 100%);
   border-radius: 28px;
-  padding: 72px 48px;
+  padding: 48px 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
