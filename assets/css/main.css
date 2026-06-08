@@ -849,7 +849,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
 
   .ss-track { padding: 16px 24px; }
 
-  .cta-card { padding: 48px 28px; }
+  .cta-card { padding: 28px 20px; margin: 0 16px; }
 
   .footer-row { flex-direction: column; align-items: flex-start; gap: 14px; }
 
