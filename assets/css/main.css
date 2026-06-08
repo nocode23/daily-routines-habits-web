@@ -229,6 +229,8 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
 }
 .nav-links a:hover { color: var(--text); text-decoration: none; }
 .nav-cta { color: var(--blue) !important; font-weight: 500 !important; }
+.nav-back { font-size: 13px !important; color: var(--text-2); opacity: 0.55; transition: opacity 0.2s !important; }
+.nav-back:hover { opacity: 1; color: var(--text-2) !important; }
 
 .nav-right { display: flex; align-items: center; gap: 16px; }
 
