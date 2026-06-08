@@ -290,6 +290,16 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   border-bottom: 1px solid var(--border);
 }
 .nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer .dl-btn {
+  border-bottom: none;
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  gap: 7px;
+}
+.nav-drawer .dl-btn:hover { color: #fff; }
 .nav-drawer a:hover { text-decoration: none; color: var(--blue); }
 
 /* --- Phone Mockup --- */
