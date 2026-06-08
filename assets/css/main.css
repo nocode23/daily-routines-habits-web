@@ -136,47 +136,46 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
 }
 .app-icon .icon-fallback { z-index: 1; position: relative; }
 
-/* --- App Store Badge --- */
-.store-badge {
+/* --- Download Button --- */
+.dl-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: #000;
+  gap: 9px;
+  background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
   color: #fff;
-  padding: 11px 22px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.14);
+  padding: 13px 26px;
+  border-radius: 100px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   user-select: none;
+  box-shadow: 0 4px 18px rgba(0, 122, 255, 0.38);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
-.store-badge:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.28); text-decoration: none; }
-.store-badge:active { transform: scale(0.97); }
-.store-badge .apple-svg { flex-shrink: 0; fill: #fff; }
-.badge-text { display: flex; flex-direction: column; line-height: 1.25; }
-.badge-s { font-size: 11px; font-weight: 400; opacity: 0.82; letter-spacing: 0.01em; }
-.badge-l { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
-
-@media (prefers-color-scheme: dark) {
-  .store-badge { background: #fff; color: #000; border-color: rgba(0,0,0,0.1); }
-  .store-badge .apple-svg { fill: #000; }
-  .badge-s, .badge-l { color: #000; }
-}
-
-.store-badge--lg { padding: 14px 28px; }
-.store-badge--lg .badge-l { font-size: 21px; }
-
-/* CTA card badge override */
-.cta-card .store-badge {
-  background: rgba(255,255,255,0.18);
+.dl-btn svg { fill: #fff; flex-shrink: 0; }
+.dl-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 122, 255, 0.52);
+  filter: brightness(1.08);
+  text-decoration: none;
   color: #fff;
-  border-color: rgba(255,255,255,0.30);
-  backdrop-filter: blur(10px);
 }
-.cta-card .store-badge:hover { background: rgba(255,255,255,0.26); }
-.cta-card .store-badge .apple-svg { fill: #fff; }
-.cta-card .badge-s,
-.cta-card .badge-l { color: #fff; }
+.dl-btn:active { transform: scale(0.96); filter: brightness(0.96); }
+
+/* Variant for CTA card (blue gradient background) */
+.dl-btn--inv {
+  background: rgba(255, 255, 255, 0.92);
+  color: #007AFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+}
+.dl-btn--inv svg { fill: #007AFF; }
+.dl-btn--inv:hover {
+  background: #fff;
+  color: #007AFF;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+  filter: none;
+}
 
 /* --- Navigation --- */
 .nav {
