@@ -316,7 +316,6 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   flex-shrink: 0;
 }
 .phone-screen {
-  position: relative;
   width: 100%;
   height: 100%;
   border-radius: calc(var(--r-phone) - 10px);
@@ -327,21 +326,6 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-}
-/* Top bezel with Dynamic Island — inside phone-screen so it's clipped by border-radius */
-.phone-topbar {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  background: #1A1A1A;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.phone-topbar-island {
-  background: #000;
-  border-radius: 20px;
-  flex-shrink: 0;
 }
 .phone-screen picture,
 .phone-screen img {
@@ -358,33 +342,29 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   background: #2C2C2E;
   border-radius: 2px;
 }
-.phone-btn--vu { left: -2.5px; top: 108px; width: 2.5px; height: 30px; }
-.phone-btn--vd { left: -2.5px; top: 148px; width: 2.5px; height: 30px; }
-.phone-btn--pw { right: -2.5px; top: 126px; width: 2.5px; height: 46px; }
+.phone-btn--vu { left: -2.5px; top: 115px; width: 2.5px; height: 30px; }
+.phone-btn--vd { left: -2.5px; top: 158px; width: 2.5px; height: 30px; }
+.phone-btn--pw { right: -2.5px; top: 134px; width: 2.5px; height: 46px; }
 
-/* Hero phone */
+/* Hero phone — 340×717 matches screenshot ratio 1320:2868 = 0.460 → no cropping */
 .phone--hero {
-  width: 310px;
-  height: 673px;
-  border-radius: 52px;
+  width: 340px;
+  height: 717px;
+  border-radius: 54px;
   animation: float 4.5s ease-in-out infinite;
   will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-.phone--hero .phone-screen { border-radius: 44px; }
-.phone--hero .phone-topbar { height: 48px; }
-.phone--hero .phone-topbar-island { width: 118px; height: 30px; }
+.phone--hero .phone-screen { border-radius: 46px; }
 
-/* Gallery phones */
+/* Gallery phones — 240×500 matches same ratio → no cropping */
 .phone--gallery {
-  width: 230px;
+  width: 240px;
   height: 500px;
-  border-radius: 42px;
+  border-radius: 44px;
 }
-.phone--gallery .phone-screen { border-radius: 34px; }
-.phone--gallery .phone-topbar { height: 36px; }
-.phone--gallery .phone-topbar-island { width: 90px; height: 22px; }
+.phone--gallery .phone-screen { border-radius: 36px; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -864,7 +844,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   .hero-approw { justify-content: center; }
   .hero-desc { max-width: 100%; }
 
-  .phone--hero { width: 260px; height: 565px; }
+  .phone--hero { width: 270px; height: 570px; }
 
   .nav-links { display: none; }
   .nav-right .dl-btn { display: none; }
@@ -882,7 +862,7 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 @media (max-width: 430px) {
-  .phone--hero { width: 230px; height: 500px; }
+  .phone--hero { width: 240px; height: 506px; }
   .hero-inner { padding: 64px 20px 72px; }
   .container { padding: 0 20px; }
 }
