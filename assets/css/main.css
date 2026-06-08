@@ -330,6 +330,11 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   border-radius: calc(var(--r-phone) - 10px);
   overflow: hidden;
   background: #000;
+  /* Fix blurry images in Safari with overflow+border-radius */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .phone-screen picture,
 .phone-screen img {
@@ -338,6 +343,8 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   display: block;
   object-fit: cover;
   object-position: top center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .phone-btn {
   position: absolute;
@@ -354,6 +361,9 @@ h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
   height: 590px;
   border-radius: 50px;
   animation: float 4.5s ease-in-out infinite;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .phone--hero .phone-island { width: 108px; height: 32px; top: 18px; }
 .phone--hero .phone-screen { border-radius: 42px; }
