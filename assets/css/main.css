@@ -70,13 +70,8 @@ h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 700; }
 h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; }
 h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
 
-/* --- i18n --- */
-.l-cs        { display: none; }
-.l-cs-block  { display: none; }
-[lang="cs"] .l-en       { display: none; }
-[lang="cs"] .l-cs       { display: inline; }
-[lang="cs"] .l-cs-block { display: block; }
-[lang="cs"] .l-en-block { display: none; }
+/* --- lang-btn as anchor --- */
+a.lang-btn { text-decoration: none; }
 
 /* --- Layout --- */
 .container {

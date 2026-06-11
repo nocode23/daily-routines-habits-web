@@ -23,25 +23,6 @@ if (hamburger) {
   });
 }
 
-/* --- Language toggle --- */
-const html = document.documentElement;
-const langBtn = document.getElementById('langBtn');
-
-const urlLang = new URLSearchParams(location.search).get('lang');
-const savedLang = (urlLang === 'en' || urlLang === 'cs') ? urlLang : (localStorage.getItem('drh-lang') || 'en');
-if (urlLang) localStorage.setItem('drh-lang', urlLang);
-html.lang = savedLang;
-
-if (langBtn) {
-  langBtn.addEventListener('click', () => {
-    const next = html.lang === 'en' ? 'cs' : 'en';
-    html.lang = next;
-    localStorage.setItem('drh-lang', next);
-    langBtn.textContent = next === 'en' ? 'CZ' : 'EN';
-  });
-  langBtn.textContent = savedLang === 'en' ? 'CZ' : 'EN';
-}
-
 /* --- Scroll reveal --- */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
