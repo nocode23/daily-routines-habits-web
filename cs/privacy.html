@@ -66,7 +66,7 @@
     Soukromí na prvním místě
   </div>
   <h1>Zásady ochrany<br>osobních údajů</h1>
-  <p class="page-date">Poslední aktualizace: 10. června 2026 · Vztahuje se na: Daily Routines &amp; Habits (iOS aplikace)</p>
+  <p class="page-date">Poslední aktualizace: 12. července 2026 · Vztahuje se na: Daily Routines &amp; Habits (iOS aplikace)</p>
 </div>
 
 <!-- ===================== CONTENT ===================== -->
@@ -76,7 +76,7 @@
     <section>
       <h2>1. Jaká data shromažďujeme</h2>
       <p>Neshromažďujeme, neukládáme ani nepřenášíme žádné osobní údaje na externí servery.</p>
-      <p>Veškerá data, která do aplikace zadáš — rutiny, oblasti, záznamy o splnění a nastavení — jsou uložena výhradně na tvém zařízení pomocí frameworku SwiftData od Apple. Pokud máš zapnuté zálohy zařízení (iCloud nebo zálohy v počítači), tvá data jsou jejich součástí — řídí se Zásadami ochrany osobních údajů společnosti Apple.</p>
+      <p>Veškerá data, která do aplikace zadáš — rutiny, oblasti, záznamy o splnění a nastavení — jsou uložena ve tvém zařízení pomocí frameworku SwiftData od Apple a — pokud jsi přihlášen k iCloudu — ve tvé soukromé iCloud databázi. Nikdy na našich serverech. Pokud máš zapnuté zálohy zařízení (iCloud nebo zálohy v počítači), tvá data jsou také jejich součástí — řídí se Zásadami ochrany osobních údajů společnosti Apple.</p>
     </section>
 
     <section>
@@ -87,51 +87,56 @@
         <li>Denní záznamy o splnění</li>
         <li>Nastavení aplikace (téma, jazyk, preference oznámení)</li>
       </ul>
-      <p>Tato data nikdy neopustí tvoje zařízení, pokud nepoužíváš zálohu Apple iCloud, která se řídí vlastní Zásadami ochrany osobních údajů společnosti Apple.</p>
+      <p>Mimo tvá vlastní zařízení a tvůj osobní iCloud účet (synchronizace a zálohy, obojí se řídí Zásadami ochrany osobních údajů Apple) tato data nikam neodcházejí — a my k nim nemáme přístup.</p>
     </section>
 
     <section>
-      <h2>3. Oznámení</h2>
+      <h2>3. Synchronizace přes iCloud</h2>
+      <p>Pokud jsi přihlášen k iCloudu, tvé rutiny a statistiky se automaticky synchronizují mezi tvými zařízeními (např. iPhone a iPad) přes tvou soukromou iCloud databázi (Apple CloudKit). Tato data patří tvému osobnímu iCloud účtu: přístup k nim máš jen ty — my jako vývojář je nevidíme a nemůžeme je získat. Apple je zpracovává dle svých Zásad ochrany osobních údajů. iCloud pro tuto aplikaci můžeš kdykoli vypnout v Nastavení iOS → tvé Apple ID → iCloud; aplikace pak funguje dál jen s lokálními daty.</p>
+    </section>
+
+    <section>
+      <h2>4. Oznámení</h2>
       <p>Pokud povolíš připomínání, aplikace požádá o oprávnění posílat lokální oznámení. Oznámení jsou generována a doručována výhradně na zařízení. Žádný obsah oznámení není přenášen na žádný server.</p>
     </section>
 
     <section>
-      <h2>4. Data widgetu</h2>
+      <h2>5. Data widgetu</h2>
       <p>Widget na ploše komunikuje s aplikací přes sdílený kontejner App Group uložený lokálně na tvém zařízení (<code>group.nocode23.com.Again</code>). Žádná data nejsou odesílána externě.</p>
     </section>
 
     <section>
-      <h2>5. Analytika a sledování</h2>
+      <h2>6. Analytika a sledování</h2>
       <p>Aplikace nepoužívá žádné analytické SDK, sledovací frameworky, reklamní sítě ani služby třetích stran. Nesledujeme tě napříč aplikacemi ani webovými stránkami.</p>
     </section>
 
     <section>
-      <h2>6. UserDefaults</h2>
+      <h2>7. UserDefaults</h2>
       <p>Aplikace používá Apple UserDefaults API k ukládání nastavení aplikace a dat pro komunikaci widgetu lokálně na tvém zařízení. Toto je deklarováno v našem manifestu <code>PrivacyInfo.xcprivacy</code> (kód důvodu CA92.1: ukládání nastavení aplikace).</p>
     </section>
 
     <section>
-      <h2>7. Soukromí dětí</h2>
+      <h2>8. Soukromí dětí</h2>
       <p>Aplikace je hodnocena 4+ a záměrně neshromažďuje data od dětí ani od žádných jiných uživatelů, protože žádná data nejsou shromažďována vůbec.</p>
     </section>
 
     <section>
-      <h2>8. Uchovávání a mazání dat</h2>
-      <p>Všechna tvá data jsou uložena na tvém zařízení. Všechna data můžeš kdykoli smazat pomocí možnosti „Resetovat všechna data" v nastavení aplikace nebo odinstalováním aplikace. Nemáme žádné kopie tvých dat.</p>
+      <h2>9. Uchovávání a mazání dat</h2>
+      <p>Všechna tvá data jsou uložena ve tvém zařízení a ve tvé soukromé iCloud databázi. Volba „Smazat vše a resetovat" v Nastavení aplikace je smaže všude — včetně ostatních zařízení připojených ke stejnému iCloud účtu. Data aplikace v iCloudu lze odstranit i v Nastavení iOS. My žádné kopie tvých dat nemáme.</p>
     </section>
 
     <section>
-      <h2>9. Služby třetích stran</h2>
-      <p>Aplikace neintegruje žádné SDK, služby, API ani analytické nástroje třetích stran. Jediná externí interakce je se systémy Apple (záloha iCloud, doručování push oznámení), které se řídí <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Zásadami ochrany osobních údajů Apple</a>.</p>
+      <h2>10. Služby třetích stran</h2>
+      <p>Aplikace neintegruje žádné SDK, služby, API ani analytické nástroje třetích stran. Jediná externí interakce je se systémy Apple (synchronizace a záloha iCloud, doručování push oznámení), které se řídí <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Zásadami ochrany osobních údajů Apple</a>.</p>
     </section>
 
     <section>
-      <h2>10. Změny těchto zásad</h2>
+      <h2>11. Změny těchto zásad</h2>
       <p>Pokud provedeme podstatné změny těchto Zásad ochrany osobních údajů, aktualizujeme výše uvedené datum „Poslední aktualizace". Pokračující používání aplikace představuje souhlas s aktualizovanými zásadami.</p>
     </section>
 
     <section>
-      <h2>11. Kontakt</h2>
+      <h2>12. Kontakt</h2>
       <p>Pokud máš dotazy ohledně těchto Zásad ochrany osobních údajů, kontaktuj nás na:<br>
         <a href="mailto:support@nocode23.com">support@nocode23.com</a>
       </p>
