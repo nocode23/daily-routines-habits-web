@@ -2,12 +2,11 @@
 
 /* --- Nav scroll --- */
 const nav = document.getElementById('nav');
-let lastScroll = 0;
+
 
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
-  nav.classList.toggle('scrolled', y > 20);
-  lastScroll = y;
+  if (nav) nav.classList.toggle('scrolled', y > 20);
 }, { passive: true });
 
 /* --- Hamburger menu --- */
@@ -19,24 +18,33 @@ if (hamburger) {
     hamburger.setAttribute('aria-expanded', isOpen);
   });
   document.querySelectorAll('.nav-drawer a').forEach(link => {
-    link.addEventListener('click', () => nav.classList.remove('open'));
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.focus();
+    }
   });
 }
 
 /* --- Scroll reveal --- */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -48px 0px'
-});
-
-document.querySelectorAll('.reveal, .reveal-r').forEach(el => revealObserver.observe(el));
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-r').forEach(el => revealObserver.observe(el));
+  document.documentElement.classList.add('motion-ready');
+}
 
 /* --- Drag-scroll on screenshot track --- */
 const ssScrollEl = document.querySelector('.ss-scroll');
@@ -60,17 +68,23 @@ if (ssScrollEl) {
 }
 
 /* --- FAQ accordion --- */
-document.querySelectorAll('.faq-q').forEach(btn => {
+document.querySelectorAll('.faq-q').forEach((btn, index) => {
+  const answer = btn.closest('.faq-item').querySelector('.faq-a');
+  answer.id = `faq-answer-${index}`;
+  answer.hidden = true;
+  btn.setAttribute('aria-controls', answer.id);
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(i => {
       i.classList.remove('open');
       i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      i.querySelector('.faq-a').hidden = true;
     });
     if (!isOpen) {
       item.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
+      answer.hidden = false;
     }
   });
 });
@@ -85,18 +99,22 @@ if (ssItems.length) {
     label: item.querySelector('.ss-label').innerHTML
   }));
 
-  const lb = document.createElement('div');
+  const cs = document.documentElement.lang === 'cs';
+  const labels = cs
+    ? { close: 'Zavřít náhled', prev: 'Předchozí snímek', next: 'Další snímek', enlarge: 'Zvětšit snímek', title: 'Obrazovky aplikace' }
+    : { close: 'Close preview', prev: 'Previous screenshot', next: 'Next screenshot', enlarge: 'Enlarge screenshot', title: 'App screenshots' };
+  const lb = document.createElement('dialog');
   lb.className = 'lightbox';
-  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-label', labels.title);
   lb.setAttribute('aria-modal', 'true');
   lb.innerHTML = `
-    <button class="lightbox-close" aria-label="Close preview">
+    <button class="lightbox-close" aria-label="${labels.close}">
       <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
     </button>
-    <button class="lightbox-arrow lightbox-arrow--prev" aria-label="Previous screenshot">
+    <button class="lightbox-arrow lightbox-arrow--prev" aria-label="${labels.prev}">
       <svg viewBox="0 0 24 24"><polyline points="14 6 8 12 14 18"/></svg>
     </button>
-    <button class="lightbox-arrow lightbox-arrow--next" aria-label="Next screenshot">
+    <button class="lightbox-arrow lightbox-arrow--next" aria-label="${labels.next}">
       <svg viewBox="0 0 24 24"><polyline points="10 6 16 12 10 18"/></svg>
     </button>
     <div class="phone phone--zoom">
@@ -117,6 +135,8 @@ if (ssItems.length) {
   const lbImg = lb.querySelector('img');
   const lbLabel = lb.querySelector('.lightbox-label');
   let current = 0;
+  let opener = null;
+  let previousOverflow = '';
 
   function showSlide(i) {
     current = (i + slides.length) % slides.length;
@@ -127,14 +147,22 @@ if (ssItems.length) {
     lbLabel.innerHTML = s.label;
   }
   function openLightbox(i) {
+    opener = document.activeElement;
+    previousOverflow = document.body.style.overflow;
     showSlide(i);
+    lb.showModal();
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
+    lb.querySelector('.lightbox-close').focus();
   }
   function closeLightbox() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
+    lb.close();
   }
+  lb.addEventListener('close', () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = previousOverflow;
+    if (opener && opener.isConnected) opener.focus();
+  });
 
   lb.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
   lb.querySelector('.lightbox-arrow--prev').addEventListener('click', () => showSlide(current - 1));
@@ -155,7 +183,7 @@ if (ssItems.length) {
     phone.classList.add('phone--clickable');
     phone.setAttribute('role', 'button');
     phone.setAttribute('tabindex', '0');
-    phone.setAttribute('aria-label', 'Enlarge screenshot');
+    phone.setAttribute('aria-label', labels.enlarge);
     phone.addEventListener('pointerdown', e => { downX = e.clientX; downY = e.clientY; });
     phone.addEventListener('click', e => {
       if (Math.abs(e.clientX - downX) > 8 || Math.abs(e.clientY - downY) > 8) return;
@@ -171,10 +199,13 @@ if (ssItems.length) {
     heroPhone.classList.add('phone--clickable');
     heroPhone.setAttribute('role', 'button');
     heroPhone.setAttribute('tabindex', '0');
-    heroPhone.setAttribute('aria-label', 'Enlarge screenshot');
+    heroPhone.setAttribute('aria-label', labels.enlarge);
     heroPhone.addEventListener('click', () => openLightbox(0));
     heroPhone.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(0); }
     });
   }
 }
+
+// Hide FAQ answers only after their controls have been initialized.
+document.documentElement.classList.add('faq-ready');
